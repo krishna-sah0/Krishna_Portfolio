@@ -1,0 +1,5 @@
+ignoredBuiltDependencies:
+  - '@vercel/speed-insights'
+  - esbuild
+  - msw
+  - sharp
