@@ -5,9 +5,7 @@ A minimal, pixel-perfect dev portfolio to showcase my work as a Full-Stack devel
 Check out the live site: [krishna-sah-portfolio](https://krishna-sah-portfolio.vercel.app)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/be67ffb8-2511-4f5c-912e-270266ef928a">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/609c66b3-4f89-46d5-8de9-0f8bf18529cb">
-  <img src="https://github.com/user-attachments/assets/609c66b3-4f89-46d5-8de9-0f8bf18529cb" alt="Screenshot">
+  <img width="1259" height="913" alt="Screenshot 2026-08-15 081104" src="https://github.com/user-attachments/assets/47ededcf-3fbf-4402-8868-42eae105ae14" />
 </picture>
 
 ## Overview
