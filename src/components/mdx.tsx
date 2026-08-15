@@ -1,8 +1,7 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
-import type { LineElement } from "rehype-pretty-code";
-import rehypePrettyCode from "rehype-pretty-code";
+import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
@@ -172,23 +171,7 @@ const options: MDXRemoteProps["options"] = {
           }
         });
       },
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: "github-dark",
-            light: "github-light",
-          },
-          keepBackground: false,
-          onVisitLine(node: LineElement) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty
-            // lines to be copy/pasted
-            if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }];
-            }
-          },
-        },
-      ],
+      rehypeHighlight,
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === "element" && node?.tagName === "figure") {
