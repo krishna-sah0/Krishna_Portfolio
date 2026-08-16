@@ -1,45 +1,10 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-
-import type { Post, PostMetadata } from "@/features/blog/types/post";
-
-function parseFrontmatter(fileContent: string) {
-  const file = matter(fileContent);
-
-  return {
-    metadata: file.data as PostMetadata,
-    content: file.content,
-  };
-}
-
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
-}
-
-function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
-}
-
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-
-  return mdxFiles.map<Post>((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-
-    const slug = path.basename(file, path.extname(file));
-
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
-}
+import type { Post } from "@/features/blog/types/post";
+import postsData from "./posts.json";
 
 export function getAllPosts() {
-  return getMDXData(path.join(process.cwd(), "src/features/blog/content")).sort(
+  const posts = postsData as unknown as Post[];
+  
+  return posts.sort(
     (a, b) => {
       if (a.metadata.pinned && !b.metadata.pinned) return -1;
       if (!a.metadata.pinned && b.metadata.pinned) return 1;
