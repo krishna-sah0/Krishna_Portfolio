@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import sharp from "sharp";
 import VCard from "vcard-creator";
+import fs from "fs";
+import path from "path";
 
 import { USER } from "@/features/profile/data/user";
 import { decodeEmail, decodePhoneNumber } from "@/utils/string";
@@ -17,7 +18,7 @@ export async function GET() {
     .addEmail(decodeEmail(USER.email))
     .addURL(USER.website);
 
-  const photo = await getVCardPhoto(USER.avatar);
+  const photo = getVCardPhoto(USER.avatar);
   if (photo) {
     card.addPhoto(photo.image, photo.mine);
   }
@@ -36,49 +37,30 @@ export async function GET() {
   });
 }
 
-async function getVCardPhoto(url: string) {
+function getVCardPhoto(url: string) {
   try {
-    const res = await fetch(url);
-
-    if (!res.ok) {
+    if (!url.startsWith("/")) {
       return null;
     }
-
-    const buffer = Buffer.from(await res.arrayBuffer());
+    const filePath = path.join(process.cwd(), "public", url);
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+    
+    const buffer = fs.readFileSync(filePath);
     if (buffer.length === 0) {
       return null;
     }
 
-    const contentType = res.headers.get("Content-Type") || "";
-    if (!contentType.startsWith("image/")) {
-      return null;
-    }
-
-    const jpegBuffer = await convertImageToJpeg(buffer);
-    const image = jpegBuffer.toString("base64");
+    const image = buffer.toString("base64");
+    const mine = url.endsWith(".png") ? "png" : "jpeg";
 
     return {
       image,
-      mine: "jpeg",
+      mine,
     };
-  } catch {
+  } catch (err) {
+    console.error("Error reading vcard photo:", err);
     return null;
-  }
-}
-
-async function convertImageToJpeg(imageBuffer: Buffer): Promise<Buffer> {
-  try {
-    const jpegBuffer = await sharp(imageBuffer)
-      .jpeg({
-        quality: 90,
-        progressive: true,
-        mozjpeg: true,
-      })
-      .toBuffer();
-
-    return jpegBuffer;
-  } catch (error) {
-    console.error("Error converting image to JPEG:", error);
-    throw error;
   }
 }
