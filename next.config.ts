@@ -3,6 +3,7 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   transpilePackages: ["next-mdx-remote"],
   allowedDevOrigins: ["abdulrehman-macbook.local"],
   turbopack: {
