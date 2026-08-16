@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   output: "standalone",
   transpilePackages: ["next-mdx-remote"],
   allowedDevOrigins: ["abdulrehman-macbook.local"],
+  // Prevent sharp (native image lib) from being bundled into server chunks.
+  // Cloudflare Workers cannot run native Node.js addons.
+  serverExternalPackages: ["sharp"],
   turbopack: {
     root: path.join(__dirname, "."),
   },

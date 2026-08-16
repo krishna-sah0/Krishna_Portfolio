@@ -1,23 +1,34 @@
 const fs = require('fs');
 const path = require('path');
 
-// Patches .next/server chunks to remove require() calls for sharp.
-// This must run AFTER `next build` and BEFORE `opennextjs-cloudflare build`,
-// because OpenNext copies these chunks and then runs esbuild over them.
-// esbuild fails to resolve the mangled sharp package name (e.g. "sharp-7e7f51627ba73241")
-// because it's a native Node.js addon incompatible with Cloudflare Workers.
+// Patches .next/server files to remove require() calls for sharp.
+// Must run AFTER `next build` and BEFORE `opennextjs-cloudflare build`.
+//
+// Why: sharp is a native Node.js addon (C++ binary) that is an optional
+// transitive dependency of `next` for local image optimization.
+// Cloudflare Workers cannot run native addons, and esbuild fails when
+// it tries to bundle the mangled sharp package name at build time.
+//
+// We search all of .next/server/ (not just chunks/) to catch all output
+// formats (webpack chunks, Turbopack chunks, route handlers, etc).
 
-const chunksDir = path.join(process.cwd(), '.next', 'server', 'chunks');
+const serverDir = path.join(process.cwd(), '.next', 'server');
 
-if (!fs.existsSync(chunksDir)) {
-  console.error('No .next/server/chunks directory found. Run `next build` first.');
+if (!fs.existsSync(serverDir)) {
+  console.error('No .next/server directory found. Run `next build` first.');
   process.exit(1);
 }
 
-const sharpRequirePattern = /require\("sharp(?:-[a-zA-Z0-9]+)?"\)/g;
+// Matches all variants:
+//   require("sharp")
+//   require('sharp')
+//   require("sharp-7e7f51627ba73241")
+//   require('sharp-7e7f51627ba73241')
+const sharpRequirePattern = /require\(["']sharp(?:-[a-zA-Z0-9]+)?["']\)/g;
 
 let totalPatched = 0;
 let filesPatched = 0;
+let filesScanned = 0;
 
 function patchDir(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -25,7 +36,8 @@ function patchDir(dir) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       patchDir(fullPath);
-    } else if (entry.isFile() && entry.name.endsWith('.js')) {
+    } else if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.mjs'))) {
+      filesScanned++;
       const content = fs.readFileSync(fullPath, 'utf8');
       if (sharpRequirePattern.test(content)) {
         sharpRequirePattern.lastIndex = 0;
@@ -34,17 +46,18 @@ function patchDir(dir) {
         fs.writeFileSync(fullPath, patched);
         totalPatched += matches.length;
         filesPatched++;
-        console.log(`Patched ${matches.length} sharp require(s) in: ${path.relative(process.cwd(), fullPath)}`);
+        console.log(`  [patched] ${path.relative(process.cwd(), fullPath)} (${matches.length} require(s) removed)`);
       }
       sharpRequirePattern.lastIndex = 0;
     }
   }
 }
 
-patchDir(chunksDir);
+console.log(`Scanning ${serverDir} for sharp require() calls...`);
+patchDir(serverDir);
 
 if (filesPatched === 0) {
-  console.log('No sharp require() calls found in .next/server/chunks (no changes needed).');
+  console.log(`Scanned ${filesScanned} files. No sharp require() calls found (no changes needed).`);
 } else {
-  console.log(`Done. Patched ${totalPatched} sharp require(s) across ${filesPatched} file(s).`);
+  console.log(`Done. Patched ${totalPatched} sharp require(s) across ${filesPatched} file(s) (scanned ${filesScanned} total).`);
 }
