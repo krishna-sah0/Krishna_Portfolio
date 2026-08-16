@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "next dev -p 1408",
-    "build": "node scripts/prebuild-posts.js && npx rimraf .next && next build && opennextjs-cloudflare build --skipNextBuild && node scripts/patch-opennext.js",
+    "build": "node scripts/prebuild-posts.js && npx rimraf .next && next build && node scripts/patch-next-chunks.js && opennextjs-cloudflare build --skipNextBuild && node scripts/patch-opennext.js",
     "start": "next start",
     "preview:cf": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
