@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "next dev -p 1408",
-    "build": "next build",
+    "build": "npx rimraf .next && next build && opennextjs-cloudflare build --skipNextBuild",
     "start": "next start",
     "preview:cf": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -120,7 +120,8 @@
   },
   "resolutions": {
     "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2"
+    "@types/react-dom": "19.2.2",
+    "esbuild": "^0.23.0"
   },
   "engines": {
     "node": "22.x",
