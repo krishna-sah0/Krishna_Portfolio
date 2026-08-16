@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "next dev -p 1408",
-    "build": "rimraf .next && next build && opennextjs-cloudflare build --skipNextBuild",
+    "build": "next build",
     "start": "next start",
     "preview:cf": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -80,6 +80,7 @@
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@eslint/eslintrc": "^3.3.0",
     "@tailwindcss/postcss": "^4.1.16",
     "@tailwindcss/typography": "^0.5.16",
