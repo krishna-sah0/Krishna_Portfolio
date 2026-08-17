@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 
@@ -33,7 +35,7 @@ export function TeckStack() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={tech.title}
-                    className="transition-transform hover:scale-110"
+                    className="transition-transform hover:scale-110 cursor-none"
                   >
                     <Image
                       src={tech.iconUrl}

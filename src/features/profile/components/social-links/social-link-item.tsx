@@ -19,7 +19,7 @@ export function SocialLinkItem({
   return (
     <a
       className={cn(
-        "group/link flex cursor-pointer items-center gap-4 rounded-2xl p-4 pr-2 transition-all duration-300 select-none",
+        "group/link flex cursor-none items-center gap-4 rounded-2xl p-4 pr-2 transition-all duration-300 select-none",
         "max-sm:screen-line-before max-sm:screen-line-after",
         "sm:nth-[2n+1]:screen-line-before sm:nth-[2n+1]:screen-line-after"
       )}
