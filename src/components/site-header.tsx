@@ -48,18 +48,7 @@ export function SiteHeader() {
             aria-label="Home"
           >
             <SiteHeaderMark />
-            <style>
-              {`
-                @keyframes rainbow {
-                  0% { filter: hue-rotate(0deg); }
-                  100% { filter: hue-rotate(360deg); }
-                }
-                .animate-rainbow {
-                  animation: rainbow 1s linear infinite;
-                }
-              `}
-            </style>
-            <span className="font-cursive text-2xl font-black tracking-wider whitespace-nowrap mt-1 pr-2 -ml-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text animate-rainbow [-webkit-text-stroke:1px_transparent]">Krishna Sah</span>
+            <span className="font-cursive text-2xl font-black tracking-wider whitespace-nowrap mt-1 pr-2 -ml-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text [-webkit-text-stroke:1px_transparent]">Krishna Sah</span>
           </Link>
         </BrandContextMenu>
 
