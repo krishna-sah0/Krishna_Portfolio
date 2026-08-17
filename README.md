@@ -1,8 +1,8 @@
-# [krishna-sah](https://krishna-sah-portfolio.vercel.app)
+# [krishna-sah](https://krishnasah0.com.np)
 
 A minimal, pixel-perfect dev portfolio to showcase my work as a Full-Stack developer.
 
-Check out the live site: [krishna-sah-portfolio](https://krishna-sah-portfolio.vercel.app)
+Check out the live site: [krishna-sah-portfolio](https://krishnasah0.com.np)
 
 <picture>
   <img width="1259" height="913" alt="Screenshot 2026-08-15 081104" src="https://github.com/user-attachments/assets/47ededcf-3fbf-4402-8868-42eae105ae14" />

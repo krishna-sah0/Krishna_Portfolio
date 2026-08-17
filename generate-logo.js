@@ -36,7 +36,7 @@ function renderText(text) {
 const ks = renderText('KS');
 const word = renderText('KrishnaSah');
 
-const markContent = `export function AbdulRehmanMark(props: React.ComponentProps<"svg">) {
+const markContent = `export function KrishnaSahMark(props: React.ComponentProps<"svg">) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${ks.width} 350" {...props}>
       <path fill="currentColor" d="${ks.path.trim()}" />
@@ -49,7 +49,7 @@ export function getMarkSVG(color: string) {
 }
 `;
 
-const wordmarkContent = `export function AbdulRehmanWordmark(props: React.ComponentProps<"svg">) {
+const wordmarkContent = `export function KrishnaSahWordmark(props: React.ComponentProps<"svg">) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${word.width} 350" fill="none" {...props}>
       <path fill="currentColor" d="${word.path.trim()}" />
@@ -62,6 +62,6 @@ export function getWordmarkSVG(color: string) {
 }
 `;
 
-fs.writeFileSync('src/components/abdulrehman-mark.tsx', markContent);
-fs.writeFileSync('src/components/abdulrehman-wordmark.tsx', wordmarkContent);
+fs.writeFileSync('src/components/krishnasah-mark.tsx', markContent);
+fs.writeFileSync('src/components/krishnasah-wordmark.tsx', wordmarkContent);
 console.log('Done!');
