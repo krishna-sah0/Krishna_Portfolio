@@ -1,14 +1,35 @@
+"use client";
+
 import { Code, ExternalLink, ImageIcon, Video } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import { Tag } from "@/components/ui/tag";
 import type { Project } from "../../types/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-edge/50 bg-accent2/30 transition-all hover:border-primary/30 hover:bg-accent2/80 hover:shadow-sm">
-      
+    <div
+      className="flex h-full flex-col overflow-hidden rounded-xl bg-accent2/30 transition-all duration-300 hover:bg-accent2/80 hover:shadow-sm"
+      style={{
+        border: hovered
+          ? "1.5px solid transparent"
+          : "1.5px solid hsl(var(--edge) / 0.5)",
+        backgroundImage: hovered
+          ? "linear-gradient(hsl(var(--accent2) / 0.8), hsl(var(--accent2) / 0.8)), linear-gradient(135deg, #a855f7, #3b82f6, #ec4899, #f59e0b)"
+          : "none",
+        backgroundOrigin: hovered ? "border-box" : "unset",
+        backgroundClip: hovered ? "padding-box, border-box" : "unset",
+        boxShadow: hovered
+          ? "0 0 16px 2px rgba(168,85,247,0.25), 0 0 32px 4px rgba(59,130,246,0.12)"
+          : "none",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+
       {/* Image / Video Header */}
       <div className="relative w-full aspect-video border-b border-edge/50 bg-muted/30">
         {project.video ? (
@@ -83,7 +104,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <Code className="h-3.5 w-3.5" />
             View Code
           </a>
-          
+
           <a
             href={project.videoLink || "#"}
             target={project.videoLink ? "_blank" : undefined}

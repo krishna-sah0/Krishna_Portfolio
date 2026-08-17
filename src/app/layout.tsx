@@ -97,14 +97,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          type="text/javascript"
+        {/*
+          Thanks @tailwindcss/@shadcn-ui. Script runs before hydration to set dark mode
+          and detect macOS — using beforeInteractive to avoid the "script inside component" warning.
+        */}
+        <Script
+          id="dark-mode-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
+        {/* Fallback for not-found pages where beforeInteractive may not run */}
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
         <script
           type="application/ld+json"

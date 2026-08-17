@@ -548,3 +548,8 @@
     calc(100% - var(--scroll-buffer)) 100%;
   animation-fill-mode: both;
 }
+
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
