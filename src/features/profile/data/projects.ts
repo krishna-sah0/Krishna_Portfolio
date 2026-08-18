@@ -13,7 +13,7 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     id: "ecommerce-krishna-store",
-    title: "E-Commerce Platform (Krishna Store)",
+    title: "E-Commerce Platform",
     sourceUrl: "https://github.com/krishna-sah0/E-Commerce-Platform-Krishna-Store-",
     skills: ["React", "Spring Boot", "PostgreSQL", "JWT", "REST APIs"],
     description: "A robust full-stack e-commerce solution engineered for high performance. Implements secure JWT authentication, strict role-based access control, and highly optimized PostgreSQL REST APIs for seamless order management.",
