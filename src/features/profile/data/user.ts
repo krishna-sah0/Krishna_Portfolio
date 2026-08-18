@@ -49,7 +49,7 @@ Beyond development, I care about mentorship and clear systems thinking — I've 
 `,
   avatar: "/images/me.jpg",
   ogImage: "/images/og-image-light.png",
-  namePronunciationUrl: "/audio/krishna-sah.mp3",
+  namePronunciationUrl: "/audio/krishna-sah.wav",
   keywords: [
     "krishna sah",
     "krishna-sah0",

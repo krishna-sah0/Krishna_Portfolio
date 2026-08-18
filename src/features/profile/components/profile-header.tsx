@@ -17,7 +17,7 @@ export function ProfileHeader() {
             className="absolute -right-1 top-2 z-10 h-8 drop-shadow-sm sm:h-10 origin-left"
           />
         </SimpleTooltip>
-        <div className="mx-[0.5px] my-[3px] relative rounded-full p-1 shadow-lg shadow-pink-500/30 transition-transform duration-500 hover:scale-105 group z-0 animate-float">
+        <div className="mx-[0.5px] -mt-[5px] mb-[3px] relative rounded-full p-1 shadow-lg shadow-pink-500/30 transition-transform duration-500 hover:scale-105 group z-0 animate-float">
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500 via-pink-500 to-red-500 -z-10" />
           <img
             className="size-32 rounded-full border-4 border-background select-none sm:size-40"

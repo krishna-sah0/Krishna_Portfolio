@@ -3,6 +3,7 @@
 import { DownloadIcon, TriangleDashedIcon, TypeIcon } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { copyText } from "@/utils/copy";
@@ -18,10 +19,24 @@ import {
 
 export function BrandContextMenu({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // During SSR and first client render, pass children through without any
+  // Radix wrapper. This prevents the hydration mismatch caused by Radix
+  // injecting data-state/data-slot/style attributes only on the client.
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger asChild>{children}</ContextMenuTrigger>
+      <ContextMenuTrigger asChild suppressHydrationWarning>
+        {children}
+      </ContextMenuTrigger>
 
       <ContextMenuContent className="w-64">
         <ContextMenuItem

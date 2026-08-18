@@ -2,7 +2,7 @@ import type { Testimonial } from "../types/testimonials";
 
 export const TESTIMONIALS_1: Testimonial[] = [
   {
-    authorAvatar: "/images/experience/forrof.svg",
+    authorAvatar: "https://robohash.org/Forrof?set=set1&bgset=bg2&size=64x64",
     authorName: "Faraz Mahmood",
     authorBio: "Founder @forrof.io",
     url: "https://www.forrof.io",

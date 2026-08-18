@@ -26,8 +26,10 @@ export function ExperiencePositionItem({
   const isOngoing = !end;
 
   return (
-    <CollapsibleWithContext defaultOpen={position.isExpanded} asChild>
-      <div className="relative last:before:absolute last:before:h-full last:before:w-4 last:before:bg-background">
+    <CollapsibleWithContext defaultOpen={position.isExpanded}>
+      <div
+        className="relative last:before:absolute last:before:h-full last:before:w-4 last:before:bg-background"
+      >
         <GlowBorder>
           <CollapsibleTrigger
             className={cn(

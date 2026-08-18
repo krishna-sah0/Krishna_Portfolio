@@ -21,13 +21,15 @@ import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function Page() {
+  const jsonLd = getPageJsonLd();
+
   return (
     <>
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
 

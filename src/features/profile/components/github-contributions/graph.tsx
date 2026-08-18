@@ -42,7 +42,7 @@ export function GitHubContributionGraph({
         {({ activity, dayIndex, weekIndex }) => (
           <Tooltip>
             <TooltipTrigger asChild>
-              <g>
+              <g suppressHydrationWarning>
                 <ContributionGraphBlock
                   activity={activity}
                   dayIndex={dayIndex}

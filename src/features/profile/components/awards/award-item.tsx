@@ -25,7 +25,7 @@ export function AwardItem({
   const canExpand = !!award.description;
 
   return (
-    <CollapsibleWithContext disabled={!canExpand} asChild>
+    <CollapsibleWithContext disabled={!canExpand}>
       <div className={className}>
         <div className="flex items-center hover:bg-accent2">
           <div

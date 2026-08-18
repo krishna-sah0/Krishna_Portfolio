@@ -31,7 +31,13 @@ function Tooltip({
 function TooltipTrigger({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+  return (
+    <TooltipPrimitive.Trigger
+      data-slot="tooltip-trigger"
+      suppressHydrationWarning
+      {...props}
+    />
+  );
 }
 
 const TooltipContent = ({
@@ -64,6 +70,19 @@ function SimpleTooltip({
   children: React.ReactNode;
   content: React.ReactNode;
 }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // During SSR and first render, pass children through without any Radix
+  // wrapper — prevents hydration mismatch from TooltipTrigger asChild
+  // injecting data-state/data-slot attributes only on the client.
+  if (!mounted) {
+    return <>{children}</>;
+  }
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
