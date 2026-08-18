@@ -78,7 +78,7 @@ export function Overview() {
             </IntroItemIcon>
             <IntroItemContent>
               <IntroItemLink
-                href="https://drive.google.com/file/d/12FIOFk6QVKGq0N4CkgviUq4eB-Qr9IIq/view?usp=sharing"
+                href="https://drive.google.com/file/d/1mDi5Tmu9b8bMWesMQlIy68Uyy4exllcQ/view?usp=sharing"
                 aria-label="Resume"
                 target="_blank"
               >

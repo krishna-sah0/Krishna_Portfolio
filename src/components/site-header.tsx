@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { DesktopNav } from "@/components/desktop-nav";
-import { NavItemGitHub } from "@/components/nav-item-github";
+
 import { MAIN_NAV } from "@/config/site";
 import { getAllPosts } from "@/features/blog/data/posts";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ import { ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Icons } from "./icons";
+import { NavItemGitHubWrapper } from "@/components/nav-item-github-wrapper";
 import { SiteHeaderMark } from "./site-header-mark";
 import { SiteHeaderWrapper } from "./site-header-wrapper";
 import { ToggleTheme } from "./toggle-theme";
@@ -22,6 +23,7 @@ const BrandContextMenu = dynamic(() =>
 const CommandMenu = dynamic(() =>
   import("@/components/command-menu").then((mod) => mod.CommandMenu)
 );
+
 
 const MobileNav = dynamic(() =>
   import("@/components/mobile-nav").then((mod) => mod.MobileNav)
@@ -67,7 +69,7 @@ export function SiteHeader() {
           {/* GitHub */}
           <div className="relative rounded-full p-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hidden sm:block">
             <div className="flex items-center justify-center rounded-full bg-blue-50/90 dark:bg-slate-950/90 backdrop-blur-md">
-              <NavItemGitHub />
+              <NavItemGitHubWrapper />
             </div>
           </div>
 

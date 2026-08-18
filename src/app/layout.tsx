@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+
 import type { WebSite, WithContext } from "schema-dts";
 
 import { Providers } from "@/components/providers";
@@ -96,14 +96,15 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontMono.variable} ${fontCursive.variable}`}
       suppressHydrationWarning
     >
-      <head>
+      <head suppressHydrationWarning>
         {/*
           Thanks @tailwindcss/@shadcn-ui. Script runs before hydration to set dark mode
           and detect macOS — using beforeInteractive to avoid the "script inside component" warning.
         */}
-        <Script id="dark-mode-init" strategy="beforeInteractive">
-          {darkModeScript}
-        </Script>
+        <script
+          id="dark-mode-init"
+          dangerouslySetInnerHTML={{ __html: darkModeScript }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

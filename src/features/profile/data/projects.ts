@@ -62,7 +62,8 @@ export const FEATURED_PROJECTS: Project[] = [
   {
     id: "plotfolio",
     title: "PERSONAL PORTFOLIO",
-    sourceUrl: "https://github.com/krishna-sah0/Plotfolio",
+    sourceUrl: "https://github.com/krishna-sah0/Krishna_Portfolio",
+    videoLink: "https://lnkd.in/p/gGqaWVXw",
     skills: ["JavaScript", "Visualization"],
     description: "A dynamic, JavaScript-based interactive data visualization and portfolio project.",
     logo: "https://api.dicebear.com/7.x/shapes/svg?seed=Plotfolio",

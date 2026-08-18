@@ -6,7 +6,7 @@ import { SOURCE_CODE_GITHUB_URL } from "@/config/site";
 import { Icons } from "./icons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export async function NavItemGitHub() {
+export function NavItemGitHub() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
