@@ -42,9 +42,9 @@ export const MAIN_NAV: NavItem[] = [
 ];
 
 export const GITHUB_USERNAME = "krishna-sah0";
-export const SOURCE_CODE_GITHUB_REPO = "krishna-sah0/krishna-sah-portfolio";
+export const SOURCE_CODE_GITHUB_REPO = "krishna-sah0/Krishna_Portfolio";
 export const SOURCE_CODE_GITHUB_URL =
-  "https://github.com/krishna-sah0/krishna-sah-portfolio";
+  "https://github.com/krishna-sah0/Krishna_Portfolio";
 
 export const UTM_PARAMS = {
   utm_source: "https://krishnasah0.com.np",
