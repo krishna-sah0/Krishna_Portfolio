@@ -33,7 +33,7 @@ export default function Page() {
         }}
       />
 
-      <div className="mx-auto w-[95%] md:max-w-5xl">
+      <div className="mx-auto w-[95%] md:max-w-5xl overflow-hidden">
         <ProfileCover />
         <ProfileHeader />
         <Separator />

@@ -45,12 +45,12 @@ export function SiteHeader() {
       >
         <BrandContextMenu>
           <Link
-            className="flex items-center gap-0 [&_svg]:h-11 [&_img]:h-11 [&_img]:w-auto [&>div]:h-11 [&>div]:w-11"
+            className="flex items-center gap-2 [&_svg]:h-11 [&_img]:h-11 [&_img]:w-auto [&>div]:h-11 [&>div]:w-11"
             href="/"
             aria-label="Home"
           >
             <SiteHeaderMark />
-            <span className="font-cursive text-2xl font-black tracking-wider whitespace-nowrap mt-1 pr-2 -ml-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text [-webkit-text-stroke:1px_transparent]">Krishna Sah</span>
+            <span className="font-cursive text-xl sm:text-2xl font-black tracking-wider whitespace-nowrap mt-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text [-webkit-text-stroke:1px_transparent]">Krishna Sah</span>
           </Link>
         </BrandContextMenu>
 

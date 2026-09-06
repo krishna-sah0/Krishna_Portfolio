@@ -5,7 +5,7 @@ export function KrishnaSahMark({ className, ...props }: React.ComponentProps<"im
     <img 
       src="/images/brand/my-logo.png" 
       alt="My Logo" 
-      className={cn("object-contain rounded-full", className)}
+      className={cn("object-contain", className)}
       {...props} 
     />
   );
